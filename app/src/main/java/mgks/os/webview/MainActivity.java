@@ -114,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 	static boolean ASWP_ADMOB		= SmartWebView.ASWP_ADMOB;
 	static boolean ASWP_TAB			= SmartWebView.ASWP_TAB;
 	static boolean ASWP_EXITDIAL	= SmartWebView.ASWP_EXITDIAL;
+	static boolean ASWP_CP			= SmartWebView.ASWP_CP;
 
 	// security variables
 	static boolean ASWP_CERT_VERIFICATION 	= SmartWebView.ASWP_CERT_VERI;
@@ -338,12 +339,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 		webSettings.setUseWideViewPort(true);
 		webSettings.setDomStorageEnabled(true);
 
-		asw_view.setOnLongClickListener(new View.OnLongClickListener() {
-			@Override
-			public boolean onLongClick(View v) {
-				return true;
-			}
-		});
+		if(!ASWP_CP) {
+			asw_view.setOnLongClickListener(new View.OnLongClickListener() {
+				@Override
+				public boolean onLongClick(View v) {
+					return true;
+				}
+			});
+		}
 		asw_view.setHapticFeedbackEnabled(false);
 
 		// download listener
@@ -984,7 +987,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @SuppressLint("SimpleDateFormat")
         String file_name    = new SimpleDateFormat("yyyy_mm_ss").format(new Date());
         String new_name     = "file_"+file_name+"_";
-        File sd_directory   = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File sd_directory   = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return File.createTempFile(new_name, ".jpg", sd_directory);
     }
 
@@ -993,7 +996,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         @SuppressLint("SimpleDateFormat")
         String file_name    = new SimpleDateFormat("yyyy_mm_ss").format(new Date());
         String new_name     = "file_"+file_name+"_";
-        File sd_directory   = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File sd_directory   = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
         return File.createTempFile(new_name, ".3gp", sd_directory);
     }
 

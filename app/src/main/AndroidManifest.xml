@@ -45,6 +45,7 @@
         android:theme="@style/SplashTheme"
 		android:hardwareAccelerated="true"
 		android:usesCleartextTraffic="true"
+		android:requestLegacyExternalStorage="true"
         tools:ignore="AllowBackup,UnusedAttribute">
         <activity
             android:name=".SplashScreen"
